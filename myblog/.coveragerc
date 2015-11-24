@@ -1,0 +1,5 @@
+[run]
+source = blog
+omit = *tests*, *migrations*, blog/wsgi.py, myblog/settings.py, manage.py, fabfile.py
+[report]
+show_missing=True

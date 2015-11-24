@@ -1,0 +1,18 @@
+{% load staticfiles %}
+{% load blog_tags %}
+<html>
+<head>
+    <title>Django TDD</title>
+    <link rel="stylesheet" href="{% static 'css/foundation.css' %}">
+</head>
+<body>
+{% block content%}
+
+{% endblock%}
+<div class="second-col">
+    <p>I am python developer and I love Django</p>
+    <h3>Recent Entries</h3>
+    {% entry_history %}
+</div>
+</body>
+</html>

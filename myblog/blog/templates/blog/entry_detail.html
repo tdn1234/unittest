@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+{{object}}
+
+<form action="{% url 'entry-detail' object.id%}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for form in forms %}
+    {{form.label}}{{form}}
+    {% endfor %}
+    {% for form in form.field.as_hidden %}
+    {{form}}
+    {% endfor %}
+
+    {% if forms.errors %}
+    <h4>Errors: </h4>
+    <ul>
+    {% for error in forms.errors%}
+        <li class="form-errors-{{error}}">{{error}}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    <!--<input type="hidden" name="id_entry" value="" />-->
+    <input type="submit" value="Submit"/>
+</form>
+<div class="comment-box">
+<ul>
+    {% for comment in comments %}
+    <li>
+        <img class="comment-image-{{comment.id}}" src="/{{ comment.image.url }}">
+        <div class="comment-body">{{comment}}</div>
+    </li>
+    {% empty%}
+    No comment yet.
+    {% endfor %}
+</ul>
+</div><!--end comment-box-->
+{% endblock %}
